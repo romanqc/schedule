@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Schedule</title>
+  <link href="style.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-center mb-6">My Schedule</h1>
+
+    <!-- Completion Filter -->
+    <div class="mb-6 bg-white shadow rounded-2xl p-4 flex items-center gap-4">
+      <label class="text-sm font-medium mr-2">Filter:</label>
+      <select id="filterCompletion" class="border border-gray-300 rounded-xl p-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300">
+        <option value="all">All</option>
+        <option value="completed">Completed</option>
+        <option value="notCompleted">Not Completed</option>
+      </select>
+    </div>
+
+    <!-- Container for tasks -->
+    <div id="taskContainer" class="space-y-6"></div>
+
+    <!-- Add new task -->
+    <div class="mt-8 bg-white shadow rounded-2xl p-4">
+      <h3 class="text-lg font-semibold mb-3">Add Task</h3>
+      <form id="taskForm" class="space-y-3">
+        <input
+          type="text"
+          id="taskTitle"
+          placeholder="Task Title"
+          class="w-full border border-gray-300 rounded-xl p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+          required
+        />
+        <input
+          type="date"
+          id="taskDate"
+          class="w-full border border-gray-300 rounded-xl p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+          required
+        />
+        <button
+          type="submit"
+          class="bg-blue-500 hover:bg-blue-600 text-white rounded-xl px-4 py-2 font-medium shadow"
+        >
+          Add Task
+        </button>
+      </form>
+    </div>
+
+    <!-- Import / Export Buttons -->
+    <div class="mt-4 flex gap-4">
+      <!-- Export -->
+      <button id="exportTasksBtn" 
+        class="bg-green-500 hover:bg-green-600 text-white rounded-xl px-4 py-2 font-medium shadow">
+        Export Tasks (Download JSON)
+      </button>
+
+      <!-- Import -->
+      <input type="file" id="importTasksInput" accept=".json" class="hidden" />
+      <button id="importTasksBtn"
+        class="bg-blue-500 hover:bg-blue-600 text-white rounded-xl px-4 py-2 font-medium shadow">
+        Import Tasks (Upload JSON)
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
