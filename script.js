@@ -27,38 +27,63 @@ async function loadTasks() {
 
 function renderTask(task) {
   const card = document.createElement("div");
-  card.className = "task-card bg-white rounded-2xl shadow p-4 border-l-4 border-blue-400";
+  card.className = "bg-white shadow rounded-2xl overflow-hidden";
 
+  // Build inner HTML
   card.innerHTML = `
-    <div class="flex items-start justify-between">
-      <div>
-        <h2 class="text-xl font-semibold">
-          ${task.title} 
-          <span class="completed-text text-green-500 font-semibold" style="display: ${task.completed ? 'inline' : 'none'}">(completed)</span>
-          <span class="not-completed-text text-red-500 font-semibold" style="display: ${task.completed ? 'none' : 'inline'}">(not completed)</span>
-        </h2>
-        <p class="text-gray-500 text-sm">Due: ${task.date}</p>
-      </div>
+  <!-- Header -->
+  <div class="flex justify-between items-center p-4 cursor-pointer task-header">
+    <div>
+      <h3 class="font-semibold text-lg">${task.title}</h3>
+      <p class="text-sm text-gray-500">Due: ${task.date}</p>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <span class="completed-text text-green-500 font-semibold text-sm" style="display: ${task.completed ? 'inline' : 'none'}">(completed)</span>
+      <span class="not-completed-text text-red-500 font-semibold text-sm" style="display: ${task.completed ? 'none' : 'inline'}">(not completed)</span>
 
       <label class="custom-checkbox relative w-6 h-6">
         <input type="checkbox" class="task-checkbox" ${task.completed ? "checked" : ""}>
         <span class="checkmark absolute inset-0 flex items-center justify-center border-2 border-gray-300 rounded"></span>
       </label>
-    </div>
 
+      <svg class="w-6 h-6 text-gray-500 transition-transform duration-300"
+           fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Details -->
+  <div class="p-4 border-t border-gray-200 hidden task-details">
     <textarea
       placeholder="Comments..."
-      class="mt-3 w-full border border-gray-300 rounded-xl p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+      class="w-full border border-gray-300 rounded-xl p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
     >${task.comments}</textarea>
 
     <button class="mt-3 text-red-500 hover:text-red-700 text-sm delete-btn">Delete</button>
-  `;
+  </div>
+`;
 
+  // Select elements
+  const header = card.querySelector(".task-header");
+  const details = card.querySelector(".task-details");
+  const arrow = card.querySelector("svg");
   const checkbox = card.querySelector(".task-checkbox");
   const completedText = card.querySelector(".completed-text");
   const notCompletedText = card.querySelector(".not-completed-text");
   const textarea = card.querySelector("textarea");
   const deleteBtn = card.querySelector(".delete-btn");
+
+  // Toggle details on header click
+  header.addEventListener("click", (e) => {
+    // Prevent checkbox clicks from collapsing the card
+    if (e.target.tagName.toLowerCase() === "input") return;
+
+    details.classList.toggle("hidden");
+    arrow.classList.toggle("rotate-180");
+  });
 
   // Checkbox toggle
   checkbox.addEventListener("change", () => {
@@ -81,6 +106,7 @@ function renderTask(task) {
 
   taskContainer.appendChild(card);
 }
+
 
 
 
