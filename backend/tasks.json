@@ -1,32 +1,26 @@
 [
   {
-    "title": "Finish Math Homework",
-    "date": "2025-09-24",
-    "completed": false,
-    "comments": "Chapter 5 exercises"
-  },
-  {
-    "title": "Prepare Presentation Slides",
+    "title": "Meeting with Professor Jordan",
     "date": "2025-09-25",
     "completed": false,
-    "comments": "Focus on graphs and charts"
+    "comments": "Go over my honors thesis analysis and methodology with professor Jordan: Ask if you could do weekly or biweekly check-ins to keep yourself in motiion."
   },
   {
-    "title": "Buy Groceries",
-    "date": "2025-09-26",
-    "completed": true,
-    "comments": "Milk, Eggs, Bread, Apples"
-  },
-  {
-    "title": "Call Professor",
-    "date": "2025-09-27",
+    "title": "Meeting with Sully",
+    "date": "2025-09-29",
     "completed": false,
-    "comments": "Ask about thesis feedback"
+    "comments": "Also going over my honors thesis analysis and methodology with Sully. *Note: Sully is a TA for professor Jordan's class. Also ask for weekely or biweekely meetings"
   },
   {
-    "title": "Gym Session",
-    "date": "2025-09-28",
-    "completed": true,
-    "comments": "Leg day workout"
+    "title": "Read over feedback",
+    "date": "2025-09-30",
+    "completed": false,
+    "comments": "What we have been reading so far in this class has given me some thought about how I should further write my analysis in my honors thesis. I want to refrenece readings like 'Two-Eyed Seeing and other lessons learned within a co-learning journey of bringing together indigenous and mainstream knowledges and ways of knowing' and in an anthropological sense, maybe talk about how I as a researcher am displaced from Warren County, but I as per Dr. Kassam's methodology, this is accounted for, and the ways we go about doing research in locations that are not necissarliy tied to us, suggest an approach of extensive and intensive research. This is something that I can continuously bring up as I continue to meet with professor Jordan and Sully."
+  },
+  {
+    "title": "Respond to Research Group Email",
+    "date": "2025-10-02",
+    "completed": false,
+    "comments": "Read the article professor Kassam sent out"
   }
 ]
