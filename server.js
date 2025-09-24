@@ -1,7 +1,6 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-const multer = require("multer");
 
 const app = express();
 const PORT = 3000;
@@ -10,7 +9,14 @@ const TASKS_FILE = path.join(__dirname, "backend", "tasks.json");
 
 // Middleware
 app.use(express.json());
-app.use(express.static("public")); // serve HTML/CSS/JS files
+
+// Serve static files (index.html, style.css, script.js) from root
+app.use(express.static(__dirname));
+
+// Default route
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 // Helper: read tasks.json
 function readTasks() {
@@ -42,7 +48,9 @@ app.post("/tasks", (req, res) => {
   }
 
   const tasks = readTasks();
-  const index = tasks.findIndex(t => t.title === newTask.title && t.date === newTask.date);
+  const index = tasks.findIndex(
+    t => t.title === newTask.title && t.date === newTask.date
+  );
   if (index > -1) tasks[index] = newTask;
   else tasks.push(newTask);
 
@@ -53,7 +61,9 @@ app.post("/tasks", (req, res) => {
 // DELETE /tasks - delete a task
 app.delete("/tasks", (req, res) => {
   const { title, date } = req.body;
-  if (!title || !date) return res.status(400).json({ error: "Task must have title and date" });
+  if (!title || !date) {
+    return res.status(400).json({ error: "Task must have title and date" });
+  }
 
   let tasks = readTasks();
   tasks = tasks.filter(t => !(t.title === title && t.date === date));
